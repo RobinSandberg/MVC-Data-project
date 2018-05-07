@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVC_Data_project.Models.Person>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.City)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(ModelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => item.City)
+        </td>
+        <td>
+            @Html.ActionLink("Hide", "Hide", new { id = item.Id })
+        </td>
+    </tr>
+    }
+
+</table>
