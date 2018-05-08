@@ -9,10 +9,23 @@
 <p>
     @Html.ActionLink("Create New Person", "Create")
 </p>
+@using (Html.BeginForm("Index" , "People", FormMethod.Get))
+{
+    <p>
+        Find by Name: @Html.TextBox("searchString")
+                      <input type="submit"  value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(Model => Model.Name)
+            @Html.ActionLink("Name", "Index" , new { SortOrder = ViewBag.NameSortParm})
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.PhoneNumber)
+        </th>
+        <th>
+            @Html.ActionLink("City", "Index", new { SortOrder = ViewBag.CitySortParm })
         </th>
         <th></th>
     </tr>
@@ -21,6 +34,12 @@
     <tr>
         <td>
             @Html.DisplayFor(ModelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(ModelItem => item.City)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

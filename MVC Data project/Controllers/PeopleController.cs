@@ -9,10 +9,34 @@ namespace MVC_Data_project.Controllers
 {
     public class PeopleController : Controller
     {
+       
+        
         // GET: People
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder ,string searchSTring)
         {
-            return View(Person.DbPeople);
+            Person listofperson = new Person();
+            listofperson.PersonList();
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
+            ViewBag.CitySortParm = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
+            var people_search = from p in Person.DbPeople select p;
+
+            if (!String.IsNullOrEmpty(searchSTring))
+            {
+               people_search = people_search.Where(i => i.Name.Contains(searchSTring) || i.City.Contains(searchSTring));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_sort":
+                    people_search = people_search.OrderBy(p => p.Name);
+                    break;
+                case "city_sort":
+                    people_search = people_search.OrderBy(p => p.City);
+                    break;
+                
+            }
+            
+            return View(people_search);
         }
 
         public ActionResult Create()
@@ -34,7 +58,7 @@ namespace MVC_Data_project.Controllers
             }
         }
 
-        [HttpPost]
+       
         public ActionResult Delete(int id)
         {
             Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);
@@ -43,23 +67,39 @@ namespace MVC_Data_project.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+       [HttpGet]
         public ActionResult Edit(int id)
         {
             Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);
-            Person.DbPeople.Add(person);
-
-            return RedirectToAction("Index");
+            Person.DbPeople.Remove(person);
+            return View(person);
         }
 
-        
-        public ActionResult Details()
+        [HttpPost]
+        public ActionResult Edit(int id, Person person)
         {
-            return View(Person.DbPeople);
+            if (ModelState.IsValid)
+            {
+                Person.DbPeople.Add(person);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(person);
+            }
+           
         }
 
-        public ActionResult Hide()
+        [HttpGet]
+        public ActionResult Details(int id)
         {
+            Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);
+            return View(person);
+        }
+
+        public ActionResult Hide(int id)
+        {
+            Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);
             return RedirectToAction("Index");
         }
     }

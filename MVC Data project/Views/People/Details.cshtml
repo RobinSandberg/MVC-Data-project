@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVC_Data_project.Models.Person>
+﻿@model MVC_Data_project.Models.Person
 
 @{
     ViewBag.Title = "Details";
@@ -17,25 +17,29 @@
         <th>
             @Html.DisplayNameFor(Model => Model.City)
         </th>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Details)
+        </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
+   
     <tr>
         <td>
-            @Html.DisplayFor(ModelItem => item.Name)
+            @Html.DisplayFor(ModelItem => Model.Name)
         </td>
         <td>
-            @Html.DisplayFor(ModelItem => item.PhoneNumber)
+            @Html.DisplayFor(ModelItem => Model.PhoneNumber)
         </td>
         <td>
-            @Html.DisplayFor(ModelItem => item.City)
+            @Html.DisplayFor(ModelItem => Model.City)
         </td>
         <td>
-            @Html.ActionLink("Hide", "Hide", new { id = item.Id })
+            @Html.DisplayFor(ModelItem => Model.Details)
+        </td>
+        <td>
+            @Html.ActionLink("Hide", "Hide", new { id = Model.Id })
         </td>
     </tr>
-    }
 
 </table>
