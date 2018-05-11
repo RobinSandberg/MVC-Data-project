@@ -1,0 +1,42 @@
+﻿@model MVC_Data_project.Models.PartialPerson
+@{
+    ViewBag.Title = "PartIndex";
+}
+
+<p>
+    @Html.ActionLink("Create New Person", "Create")
+</p>
+
+<table class="table">
+    <tr class="row">
+        <th class="col-md-3">
+            @Html.DisplayName("Name")
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayName("Phone Number")
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayName("City")
+        </th>
+        <th></th>
+    </tr>
+</table>
+
+<div class="row">
+
+    <div>
+        @foreach (var item in Model.persons)
+        {
+            Html.RenderAction("PartPerson", new { id = item.Id });
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </div>
+
+        }
+
+    </div>
+
+
+</div>

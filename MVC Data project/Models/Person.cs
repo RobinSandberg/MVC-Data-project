@@ -26,10 +26,6 @@ namespace MVC_Data_project.Models
         public Person()
         {
             Id = idCount++;
-        }
-
-        public void PersonList()
-        {
             if (Id == 0)
             {
                 DbPeople.Add(new Person() { Name = "Robin Sandberg", PhoneNumber = "3020-32623", City = "Växjö", Details = "A 35 year old man that studies IT." });
