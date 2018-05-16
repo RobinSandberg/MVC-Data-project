@@ -1,0 +1,32 @@
+﻿@model MVC_Data_project.Models.Person
+
+<div class="row" id="@("PersonId" + Model.Id)">
+    <div class="col-md-3">
+        @Model.Name
+    </div>
+    <div class="col-md-3">
+        @Model.City
+    </div>
+    <div class="col-md-3">
+        @Model.PhoneNumber
+    </div>
+    <div class="col-md-1">
+        @Ajax.ActionLink("Edit", "EditPerson", new { id = Model.Id},
+       new AjaxOptions
+       {
+           UpdateTargetId = "PersonId" + Model.Id,
+           InsertionMode = InsertionMode.ReplaceWith
+       }
+       )
+    </div>
+    <div class="col-md-2">
+       @Ajax.ActionLink("Delete", "RemovePerson" , new { id = Model.Id},
+                new AjaxOptions
+                {
+                    UpdateTargetId = "PersonId" + Model.Id,
+                    InsertionMode = InsertionMode.ReplaceWith,
+                    Confirm = "Are you sure you wanna delete this person?"
+                }
+                )
+    </div>
+</div>

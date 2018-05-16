@@ -1,0 +1,33 @@
+﻿@model MVC_Data_project.Models.Person
+
+<div class="row" id="@("PersonId" + Model.Id)">
+    <div class="col-md-9">
+        @using (Ajax.BeginForm("EditSave",
+            new AjaxOptions
+            {
+                UpdateTargetId = "PersonId" + Model.Id,
+                InsertionMode = InsertionMode.ReplaceWith
+            }
+            ))
+        {
+            @Html.HiddenFor(Model => Model.Id)
+            @Html.DisplayName("Name: ")
+            @Html.EditorFor(Model => Model.Name)
+            @Html.DisplayName(" City: ")
+            @Html.EditorFor(Model => Model.City)
+            @Html.DisplayName(" Phone number: ")
+            @Html.EditorFor(Model => Model.PhoneNumber)
+            <input type="submit" value="Save" />
+        }
+    </div>
+    <div class="col-md-3">
+        @Ajax.ActionLink("Cancel", "PersonList", new { id = Model.Id},
+                 new AjaxOptions
+                 {
+                     UpdateTargetId = "PersonId" + Model.Id,
+                     InsertionMode = InsertionMode.ReplaceWith,
+
+                 }
+                 )
+    </div>
+</div>

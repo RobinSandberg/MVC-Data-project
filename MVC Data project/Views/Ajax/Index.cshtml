@@ -1,0 +1,76 @@
+﻿@using MVC_Data_project.Models
+@model List<Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ajax Index</h2>
+
+<div class="row">
+    @using (Ajax.BeginForm("CreatePerson",
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "endOfPersonList"
+        }
+        ))
+    {
+        Person person = new Person();
+        @Html.DisplayName("Name: ")
+        @Html.EditorFor(Model => person.Name, new { htmlAttributes = new { placeholder = "First and Last Name" } })
+        @Html.DisplayName(" City: ")
+        @Html.EditorFor(Model => person.City, new { htmlAttributes = new { placeholder = "Put your city here" } })
+        @Html.DisplayName(" Phone: ")
+        @Html.EditorFor(Model => person.PhoneNumber, new { htmlAttributes = new { placeholder = "Put your number here" } })
+        <input type="submit" value="Add Person" />
+    }
+
+</div>
+<br />
+<div class="row">
+    @using (Ajax.BeginForm("SearchPeople",
+        new AjaxOptions
+        {
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.ReplaceWith,
+            UpdateTargetId = "endOfPersonList"
+        }
+        ))
+    {
+
+        @Html.DisplayName("Search by Name or City: ")
+        @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    }
+</div>
+<br />
+
+<table class="table">
+    <tr class="row">
+        <th class="col-md-3">
+            @Ajax.ActionLink("Name", "SortList", new { SortOrder = ViewBag.NameSortParm }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "PersonId" })
+        </th>
+        <th class="col-md-3">
+            @Ajax.ActionLink("City", "SortList", new { SortOrder = ViewBag.CitySortParm }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "PersonId" })
+        </th>
+        <th class="col-md-3">
+            @Html.DisplayName("Phone Number")
+        </th>
+        <th></th>
+    </tr>
+</table>
+
+<div class="row">
+
+    <div class="col-md-12">
+        @foreach (var item in Model)
+        {
+            Html.RenderAction("PersonList", new { id = item.Id });
+        }
+        <span id="endOfPersonList"></span>
+    </div>
+
+</div>
+
+
