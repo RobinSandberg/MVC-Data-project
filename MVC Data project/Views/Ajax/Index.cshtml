@@ -49,10 +49,10 @@
 <table class="table">
     <tr class="row">
         <th class="col-md-3">
-            @Ajax.ActionLink("Name", "SortList", new { SortOrder = ViewBag.NameSortParm }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "PersonId" })
+            @Html.DisplayName("Name")
         </th>
         <th class="col-md-3">
-            @Ajax.ActionLink("City", "SortList", new { SortOrder = ViewBag.CitySortParm }, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "PersonId" })
+            @Html.DisplayName("City")
         </th>
         <th class="col-md-3">
             @Html.DisplayName("Phone Number")

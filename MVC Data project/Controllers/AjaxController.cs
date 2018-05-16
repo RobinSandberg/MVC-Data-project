@@ -65,27 +65,6 @@ namespace MVC_Data_project.Controllers
             return Content("");
         }
 
-        public ActionResult SortList(string sortOrder)
-        {
-            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
-            ViewBag.CitySortParm = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
-
-            var PeopleSort = from p in Person.DbPeople select p;
-
-            switch (sortOrder)
-            {
-                case "name_sort":
-                    PeopleSort = PeopleSort.OrderBy(p => p.Name);
-                    break;
-                case "city_sort":
-                    PeopleSort = PeopleSort.OrderBy(p => p.City);
-                    break;
-
-            }
-
-            return PartialView("_personList", PeopleSort);
-        }
-
         public ActionResult SearchPeople(string searchString)
         {
             
