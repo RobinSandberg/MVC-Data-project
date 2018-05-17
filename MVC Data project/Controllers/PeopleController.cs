@@ -40,31 +40,31 @@ namespace MVC_Data_project.Controllers
             return View(people_search);
         }
 
-        public ActionResult PartIndex(string sortOrder, string searchString)
+        public ActionResult PartIndex()
         {
             Person listofperson = new Person();
             PartialPerson part = new PartialPerson(Person.DbPeople);
 
-            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
-            ViewBag.CitySortParm = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
+            //ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
+            //ViewBag.CitySortParm = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
 
-            var people_search = from p in Person.DbPeople select p;
+            //var people_search = from p in Person.DbPeople select p;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                people_search = people_search.Where(i => i.Name.ToLower().Contains(searchString) || i.City.ToLower().Contains(searchString));
-            }
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    people_search = people_search.Where(i => i.Name.ToLower().Contains(searchString) || i.City.ToLower().Contains(searchString));
+            //}
 
-            switch (sortOrder)
-            {
-                case "name_sort":
-                    people_search = people_search.OrderBy(p => p.Name);
-                    break;
-                case "city_sort":
-                    people_search = people_search.OrderBy(p => p.City);
-                    break;
+            //switch (sortOrder)
+            //{
+            //    case "name_sort":
+            //        people_search = people_search.OrderBy(p => p.Name);
+            //        break;
+            //    case "city_sort":
+            //        people_search = people_search.OrderBy(p => p.City);
+            //        break;
 
-            }
+            //}
 
 
             return View(part);

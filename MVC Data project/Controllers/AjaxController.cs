@@ -16,13 +16,6 @@ namespace MVC_Data_project.Controllers
             return View(Person.DbPeople);
         }
 
-        public ActionResult PersonList(int id)
-        {
-
-            Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);
-            return PartialView("_personList", person);
-        }
-
         public ActionResult CreatePerson(Person person)
         {
             if (ModelState.IsValid)
@@ -65,15 +58,20 @@ namespace MVC_Data_project.Controllers
             return Content("");
         }
 
+       
         public ActionResult SearchPeople(string searchString)
         {
-            
-            var result = Person.DbPeople
+            var people_search = from p in Person.DbPeople select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                people_search = people_search.Where(i => i.Name.ToLower().Contains(searchString) || i.City.ToLower().Contains(searchString));
+            }
+           /* var result = Person.DbPeople
                 .Where(p =>
                     p.Name.ToLower().Contains(searchString) ||
                     p.City.ToLower().Contains(searchString)
-                );
-            return PartialView("_personList", result);
+                );*/
+            return PartialView("_PersonList", people_search);
         }
     }
 }

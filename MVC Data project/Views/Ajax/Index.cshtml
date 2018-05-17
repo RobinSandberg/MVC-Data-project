@@ -28,22 +28,9 @@
 
 </div>
 <br />
-<div class="row">
-    @using (Ajax.BeginForm("SearchPeople",
-        new AjaxOptions
-        {
-            HttpMethod = "GET",
-            InsertionMode = InsertionMode.ReplaceWith,
-            UpdateTargetId = "endOfPersonList"
-        }
-        ))
-    {
-
-        @Html.DisplayName("Search by Name or City: ")
-        @Html.TextBox("searchString")
-        <input type="submit" value="Search" />
-    }
-</div>
+@*<div class="row">
+    @Html.Partial("_Search");
+</div>*@
 <br />
 
 <table class="table">
@@ -66,7 +53,9 @@
     <div class="col-md-12">
         @foreach (var item in Model)
         {
-            Html.RenderAction("PersonList", new { id = item.Id });
+        <div id="@("PersonId" + item.Id)">
+            @Html.Partial("_personList", item)
+        </div>
         }
         <span id="endOfPersonList"></span>
     </div>

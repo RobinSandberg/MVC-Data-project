@@ -138,6 +138,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Ajax\_editPerson.cshtml" />
+    <Content Include="Views\Ajax\_searchPerson.cshtml" />
+    <Content Include="Views\Ajax\_Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

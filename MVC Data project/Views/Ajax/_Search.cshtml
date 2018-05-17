@@ -1,0 +1,18 @@
+﻿@model MVC_Data_project.Models.Person
+
+@using (Ajax.BeginForm("SearchPeople",
+              new AjaxOptions
+              {
+        //HttpMethod = "GET",
+        UpdateTargetId = "PersonId" + Model.Id,
+                  InsertionMode = InsertionMode.ReplaceWith
+
+
+              }
+      ))
+{
+
+    @Html.DisplayName("Search by Name or City: ")
+    @Html.TextBox("searchString")
+    <input type="submit" value="Search" />
+}
