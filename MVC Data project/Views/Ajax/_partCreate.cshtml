@@ -1,0 +1,32 @@
+﻿@using MVC_Data_project.Models
+@model List<Person>
+
+|
+@Ajax.ActionLink("Hide Create Person","Create",
+               new AjaxOptions
+               {
+                   UpdateTargetId = "Button",
+                   InsertionMode = InsertionMode.Replace
+
+               }
+               )
+
+@using (Ajax.BeginForm("CreatePerson",
+       new AjaxOptions
+       {
+           InsertionMode = InsertionMode.InsertBefore,
+           UpdateTargetId = "endOfPersonList"
+       }
+       ))
+{
+    Person person = new Person();
+    @Html.DisplayName("Name: ")
+    @Html.EditorFor(Model => person.Name, new { htmlAttributes = new { placeholder = "First and Last Name" } })
+    @Html.DisplayName(" City: ")
+    @Html.EditorFor(Model => person.City, new { htmlAttributes = new { placeholder = "Put your city here" } })
+    @Html.DisplayName(" Phone: ")
+    @Html.EditorFor(Model => person.PhoneNumber, new { htmlAttributes = new { placeholder = "Put your number here" } })
+    <input type="submit" value="Add Person" />
+
+
+}

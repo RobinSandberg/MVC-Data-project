@@ -1,0 +1,22 @@
+﻿@using MVC_Data_project.Models
+@model List<Person>
+
+<div class="row">
+    <div class="col-md-3">
+        @Ajax.ActionLink("Name", "SortPeople", new { SortOrder = ViewBag.NameSortParm }, new AjaxOptions
+   {
+       UpdateTargetId = "Search",
+       InsertionMode = InsertionMode.ReplaceWith
+   })
+    </div>
+    <div class="col-md-3">
+        @Ajax.ActionLink("City", "SortPeople", new { SortOrder = ViewBag.CitySortParm }, new AjaxOptions
+   {
+       UpdateTargetId = "Search",
+       InsertionMode = InsertionMode.ReplaceWith
+   })
+    </div>
+    <div class="col-md-3">
+        @Html.DisplayName("Phone Number")
+    </div>
+</div>

@@ -1,5 +1,5 @@
 ﻿@using MVC_Data_project.Models
-@model List<Person>
+    @model List<Person>
 
 @{
     ViewBag.Title = "Index";
@@ -7,57 +7,33 @@
 
 <h2>Ajax Index</h2>
 
-<div class="row">
-    @using (Ajax.BeginForm("CreatePerson",
-        new AjaxOptions
-        {
-            InsertionMode = InsertionMode.InsertBefore,
-            UpdateTargetId = "endOfPersonList"
-        }
-        ))
-    {
-        Person person = new Person();
-        @Html.DisplayName("Name: ")
-        @Html.EditorFor(Model => person.Name, new { htmlAttributes = new { placeholder = "First and Last Name" } })
-        @Html.DisplayName(" City: ")
-        @Html.EditorFor(Model => person.City, new { htmlAttributes = new { placeholder = "Put your city here" } })
-        @Html.DisplayName(" Phone: ")
-        @Html.EditorFor(Model => person.PhoneNumber, new { htmlAttributes = new { placeholder = "Put your number here" } })
-        <input type="submit" value="Add Person" />
-    }
+<div class="row" id="Button">
+    @Html.Partial("_CreateButton")
 
 </div>
 <br />
-@*<div class="row">
-    @Html.Partial("_Search");
-</div>*@
+<div class="row">
+    @Html.Partial("_Search")
+</div>
 <br />
 
 <table class="table">
     <tr class="row">
-        <th class="col-md-3">
-            @Html.DisplayName("Name")
-        </th>
-        <th class="col-md-3">
-            @Html.DisplayName("City")
-        </th>
-        <th class="col-md-3">
-            @Html.DisplayName("Phone Number")
-        </th>
-        <th></th>
+        @Html.Partial("_SortMenu")
     </tr>
 </table>
 
-<div class="row">
-
+<div class="row" id="Search">
+     
     <div class="col-md-12">
-        @foreach (var item in Model)
-        {
-        <div id="@("PersonId" + item.Id)">
-            @Html.Partial("_personList", item)
-        </div>
-        }
-        <span id="endOfPersonList"></span>
+      @*@Html.Partial("_personListTest")*@
+    @foreach (var item in Model)
+    {
+    <div>
+        @Html.Partial("_personList", item)
+    </div>
+    }
+    <span id="endOfPersonList"></span>
     </div>
 
 </div>

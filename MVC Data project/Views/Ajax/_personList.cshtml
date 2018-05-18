@@ -16,17 +16,15 @@
        {
            UpdateTargetId = "PersonId" + Model.Id,
            InsertionMode = InsertionMode.ReplaceWith
-       }
-       )
+       })
     </div>
     <div class="col-md-2">
-       @Ajax.ActionLink("Delete", "RemovePerson" , new { id = Model.Id},
-                new AjaxOptions
-                {
-                    UpdateTargetId = "PersonId" + Model.Id,
-                    InsertionMode = InsertionMode.ReplaceWith,
-                    Confirm = "Are you sure you wanna delete this person?"
-                }
-                )
+        @Ajax.ActionLink("Delete", "RemovePerson" , new { id = Model.Id},
+           new AjaxOptions
+           {
+               UpdateTargetId = "PersonId" + Model.Id,
+               InsertionMode = InsertionMode.ReplaceWith,
+               Confirm = "Are you sure you wanna delete this person?"
+           })
     </div>
 </div>

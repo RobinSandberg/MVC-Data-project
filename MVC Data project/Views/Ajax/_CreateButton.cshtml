@@ -1,0 +1,12 @@
+﻿@using MVC_Data_project.Models
+    @model List<Person>
+
+
+@Ajax.ActionLink("Create Person", "PartCreatePerson", new AjaxOptions
+   {
+   UpdateTargetId = "create",
+   InsertionMode = InsertionMode.Replace
+   })
+
+
+<span id="create"></span>

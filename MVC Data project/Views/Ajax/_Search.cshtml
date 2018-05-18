@@ -1,12 +1,11 @@
-﻿@model MVC_Data_project.Models.Person
+﻿@using MVC_Data_project.Models
+@model List<Person>
 
 @using (Ajax.BeginForm("SearchPeople",
               new AjaxOptions
               {
-        //HttpMethod = "GET",
-        UpdateTargetId = "PersonId" + Model.Id,
-                  InsertionMode = InsertionMode.ReplaceWith
-
+                  UpdateTargetId = "Search",
+                  InsertionMode = InsertionMode.Replace
 
               }
       ))

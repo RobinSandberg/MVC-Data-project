@@ -13,9 +13,24 @@ namespace MVC_Data_project.Controllers
         public ActionResult Index()
         {
             Person listofperson = new Person();
+           
             return View(Person.DbPeople);
         }
 
+        public ActionResult PersonList(int id)
+        {
+            Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);
+            return PartialView("_personList", person);
+        }
+        public ActionResult Create()
+        {
+            return PartialView("_Createbutton");
+        }
+
+        public ActionResult PartCreatePerson()
+        { 
+            return PartialView("_partCreate");
+        }
         public ActionResult CreatePerson(Person person)
         {
             if (ModelState.IsValid)
@@ -62,16 +77,35 @@ namespace MVC_Data_project.Controllers
         public ActionResult SearchPeople(string searchString)
         {
             var people_search = from p in Person.DbPeople select p;
-            if (!String.IsNullOrEmpty(searchString))
+            
+            if(!string.IsNullOrWhiteSpace(searchString))
             {
                 people_search = people_search.Where(i => i.Name.ToLower().Contains(searchString) || i.City.ToLower().Contains(searchString));
             }
-           /* var result = Person.DbPeople
-                .Where(p =>
-                    p.Name.ToLower().Contains(searchString) ||
-                    p.City.ToLower().Contains(searchString)
-                );*/
-            return PartialView("_PersonList", people_search);
+            
+            return PartialView("_searchPerson", people_search.ToList());
+        }
+
+        public ActionResult SortPeople(string sortOrder)
+        {
+
+            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
+            ViewBag.CitySortParm = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
+
+            var people_sort = from p in Person.DbPeople select p;
+
+            switch (sortOrder)
+            {
+                case "name_sort":
+                    people_sort = people_sort.OrderBy(p => p.Name);
+                    break;
+                case "city_sort":
+                    people_sort = people_sort.OrderBy(p => p.City);
+                    break;
+
+            }
+
+            return PartialView("_sortPeople", people_sort.ToList());
         }
     }
 }
