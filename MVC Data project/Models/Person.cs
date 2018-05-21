@@ -14,11 +14,11 @@ namespace MVC_Data_project.Models
         [Key]
 
         public int Id { get; set; }
-
+        [Required]
         public string Name { get; set; }
-
+        [Phone]
         public string PhoneNumber { get; set; }
-
+        [Required]
         public string City { get; set; }
 
         public string Details { get; set; }
