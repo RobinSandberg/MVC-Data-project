@@ -15,12 +15,15 @@ namespace MVC_Data_project.Models
 
         public int Id { get; set; }
         [Required]
+        [StringLength(50)]
         public string Name { get; set; }
         [Phone]
+        [StringLength(20)]
         public string PhoneNumber { get; set; }
         [Required]
+        [StringLength(50)]
         public string City { get; set; }
-
+        [StringLength(500)]
         public string Details { get; set; }
 
         public Person()
