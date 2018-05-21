@@ -1,10 +1,11 @@
-﻿@model IEnumerable<MVC_Data_project.Models.Person>
+﻿@using MVC_Data_project.Models
+@model List<Person>
 
 <div class="row" id="@("Search")">
 
     @foreach (var item in Model)
     {
-        <Div class="row" id="@("PersonId" + item.Id)">
+        <Div class="row" id="@("PersonId"+ item.Id)">
             <Div class="col-md-3">
                 @Html.DisplayFor(ModelItem => item.Name)
             </Div>

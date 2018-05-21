@@ -13,7 +13,8 @@ namespace MVC_Data_project.Controllers
         public ActionResult Index()
         {
             Person listofperson = new Person();
-           
+            Session["TestName"] = "name_sort";
+            Session["TestCity"] = "city_sort";
             return View(Person.DbPeople);
         }
 
@@ -85,12 +86,12 @@ namespace MVC_Data_project.Controllers
             
             return PartialView("_searchPerson", people_search.ToList());
         }
-
+        
         public ActionResult SortPeople(string sortOrder)
         {
 
-            ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
-            ViewBag.CitySortParm = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
+            Session["TestName"] = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
+            Session["TestCity"] = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
 
             var people_sort = from p in Person.DbPeople select p;
 
@@ -102,9 +103,12 @@ namespace MVC_Data_project.Controllers
                 case "city_sort":
                     people_sort = people_sort.OrderBy(p => p.City);
                     break;
+                default:
+                    people_sort = people_sort.OrderByDescending(p => p.Name);
+                    break;
 
             }
-
+            
             return PartialView("_sortPeople", people_sort.ToList());
         }
     }
