@@ -11,6 +11,14 @@
         @Model.PhoneNumber
     </div>
     <div class="col-md-1">
+        @Ajax.ActionLink("Details", "DetailPerson", new { id = Model.Id},
+       new AjaxOptions
+       {
+           UpdateTargetId = "PersonId" + Model.Id,
+           InsertionMode = InsertionMode.ReplaceWith
+       })
+    </div>
+    <div class="col-md-1">
         @Ajax.ActionLink("Edit", "EditPerson", new { id = Model.Id},
        new AjaxOptions
        {
@@ -18,7 +26,7 @@
            InsertionMode = InsertionMode.ReplaceWith
        })
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         @Ajax.ActionLink("Delete", "RemovePerson" , new { id = Model.Id},
            new AjaxOptions
            {

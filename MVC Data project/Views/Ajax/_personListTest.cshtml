@@ -5,34 +5,42 @@
 
     @foreach (var item in Model)
     {
-        <Div class="row" id="@("PersonId"+ item.Id)">
-            <Div class="col-md-3">
-                @Html.DisplayFor(ModelItem => item.Name)
-            </Div>
-            <djv class="col-md-3">
-                @Html.DisplayFor(ModelItem => item.City)
-            </djv>
-            <div class="col-md-3">
-                @Html.DisplayFor(ModelItem => item.PhoneNumber)
-            </div>
-            <div class="col-md-1">
-                @Ajax.ActionLink("Edit", "EditPerson", new { id = item.Id},
-               new AjaxOptions
-               {
-                   UpdateTargetId = "PersonId" + item.Id,
-                   InsertionMode = InsertionMode.ReplaceWith
-               })
-            </div>
-            <div class="col-md-2">
-                @Ajax.ActionLink("Delete", "RemovePerson" , new { id = item.Id},
-                 new AjaxOptions
-                 {
-                     UpdateTargetId = "PersonId" + item.Id,
-                     InsertionMode = InsertionMode.ReplaceWith,
-                     Confirm = "Are you sure you wanna delete this person?"
-                 })
-            </div>
+    <Div class="row" id="@("PersonId"+ item.Id)">
+        <Div class="col-md-3">
+            @Html.DisplayFor(ModelItem => item.Name)
         </Div>
+        <djv class="col-md-3">
+            @Html.DisplayFor(ModelItem => item.City)
+        </djv>
+        <div class="col-md-3">
+            @Html.DisplayFor(ModelItem => item.PhoneNumber)
+        </div>
+        <div class="col-md-1">
+            @Ajax.ActionLink("Details", "DetailPerson", new { id = item.Id},
+           new AjaxOptions
+           {
+               UpdateTargetId = "PersonId" + item.Id,
+               InsertionMode = InsertionMode.ReplaceWith
+           })
+        </div>
+        <div class="col-md-1">
+            @Ajax.ActionLink("Edit", "EditPerson", new { id = item.Id},
+           new AjaxOptions
+           {
+               UpdateTargetId = "PersonId" + item.Id,
+               InsertionMode = InsertionMode.ReplaceWith
+           })
+        </div>
+        <div class="col-md-1">
+            @Ajax.ActionLink("Delete", "RemovePerson" , new { id = item.Id},
+             new AjaxOptions
+             {
+                 UpdateTargetId = "PersonId" + item.Id,
+                 InsertionMode = InsertionMode.ReplaceWith,
+                 Confirm = "Are you sure you wanna delete this person?"
+             })
+        </div>
+    </Div>
     }
     <span id="endOfPersonList"></span>
 </div>

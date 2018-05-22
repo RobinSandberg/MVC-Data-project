@@ -26,6 +26,8 @@
     @Html.EditorFor(Model => person.City, new { htmlAttributes = new { placeholder = "Put your city here" } })
     @Html.DisplayName(" Phone: ")
     @Html.EditorFor(Model => person.PhoneNumber, new { htmlAttributes = new { placeholder = "Put your number here" } })
+    @Html.DisplayName(" Details: ")
+    @Html.TextAreaFor(Model => person.Details, new { placeholder = "Add something about you here" } )
     <input type="submit" value="Add Person" />
 
 

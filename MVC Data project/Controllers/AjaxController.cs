@@ -67,6 +67,12 @@ namespace MVC_Data_project.Controllers
 
         }
 
+        public ActionResult DetailPerson(int id)
+        {
+            Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);
+            return PartialView("_detailPerson", person);
+        }
+
         public ActionResult RemovePerson(int id)
         {
             Person person = Person.DbPeople.SingleOrDefault(i => i.Id == id);

@@ -1,0 +1,26 @@
+﻿@model MVC_Data_project.Models.Person
+
+<div class="row" id="@("PersonId" + Model.Id)">
+    <div class="col-md-3">
+        @Model.Name
+    </div>
+    <div class="col-md-3">
+        @Model.City
+    </div>
+    <div class="col-md-3">
+        @Model.PhoneNumber
+    </div>
+    <div class="col-md-2">
+        @Model.Details
+    </div>
+
+    <div class="col-md-1">
+        @Ajax.ActionLink("Hide Details", "PersonList", new { id = Model.Id},
+       new AjaxOptions
+       {
+           UpdateTargetId = "PersonId" + Model.Id,
+           InsertionMode = InsertionMode.ReplaceWith
+       })
+    </div>
+    
+</div>

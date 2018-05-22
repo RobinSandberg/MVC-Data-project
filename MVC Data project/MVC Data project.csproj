@@ -143,6 +143,7 @@
     <Content Include="Views\Ajax\_CreateButton.cshtml" />
     <Content Include="Views\Ajax\_SortMenu.cshtml" />
     <Content Include="Views\Ajax\_personListTest.cshtml" />
+    <Content Include="Views\Ajax\_detailPerson.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
