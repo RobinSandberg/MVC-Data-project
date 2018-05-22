@@ -84,7 +84,7 @@ namespace MVC_Data_project.Controllers
                 people_search = people_search.Where(i => i.Name.ToLower().Contains(searchString) || i.City.ToLower().Contains(searchString));
             }
             
-            return PartialView("_searchPerson", people_search.ToList());
+            return PartialView("_personListTest", people_search.ToList());
         }
         
         public ActionResult SortPeople(string sortOrder)
@@ -109,7 +109,7 @@ namespace MVC_Data_project.Controllers
 
             }
             
-            return PartialView("_sortPeople", people_sort.ToList());
+            return PartialView("_personListTest", people_sort.ToList());
         }
     }
 }
