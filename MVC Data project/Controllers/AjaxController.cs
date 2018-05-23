@@ -13,8 +13,7 @@ namespace MVC_Data_project.Controllers
         public ActionResult Index()
         {
             Person listofperson = new Person();
-            Session["TestName"] = "name_sort";
-            Session["TestCity"] = "city_sort";
+           
             return View(Person.DbPeople);
         }
 
@@ -92,30 +91,25 @@ namespace MVC_Data_project.Controllers
             
             return PartialView("_personListTest", people_search.ToList());
         }
-        
-        public ActionResult SortPeople(string sortOrder)
+
+        public ActionResult SortNameUp()
         {
+            return PartialView("_personListTest", Person.DbPeople.OrderBy(p => p.Name).ToList());
+        }
 
-            Session["TestName"] = string.IsNullOrEmpty(sortOrder) ? "name_sort" : "";
-            Session["TestCity"] = string.IsNullOrEmpty(sortOrder) ? "city_sort" : "";
+        public ActionResult SortNameDown()
+        {
+            return PartialView("_personListTest", Person.DbPeople.OrderByDescending(p => p.Name).ToList());
+        }
 
-            var people_sort = from p in Person.DbPeople select p;
+        public ActionResult SortCityUp()
+        {
+            return PartialView("_personListTest", Person.DbPeople.OrderBy(p => p.City).ToList());
+        }
 
-            switch (sortOrder)
-            {
-                case "name_sort":
-                    people_sort = people_sort.OrderBy(p => p.Name);
-                    break;
-                case "city_sort":
-                    people_sort = people_sort.OrderBy(p => p.City);
-                    break;
-                default:
-                    people_sort = people_sort.OrderByDescending(p => p.Name);
-                    break;
-
-            }
-            
-            return PartialView("_personListTest", people_sort.ToList());
+        public ActionResult SortCityDown()
+        {
+            return PartialView("_personListTest", Person.DbPeople.OrderByDescending(p => p.City).ToList());
         }
     }
 }

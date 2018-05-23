@@ -4,23 +4,36 @@
 
 <div class="row">
     <div class="col-md-3">
-        @Ajax.ActionLink("Name", "SortPeople", new { sortOrder = Session["TestName"]}, new AjaxOptions
+        @Ajax.ActionLink("Name Up", "SortNameUp", new AjaxOptions
+   {
+       UpdateTargetId = "Search",
+       InsertionMode = InsertionMode.ReplaceWith
+   })
+        |
+        @Ajax.ActionLink("Name Down", "SortNameDown", new AjaxOptions
    {
        UpdateTargetId = "Search",
        InsertionMode = InsertionMode.ReplaceWith
    })
     </div>
     <div class="col-md-3">
-        @Ajax.ActionLink("City", "SortPeople", new { sortOrder = Session["TestCity"]}, new AjaxOptions
+        @Ajax.ActionLink("City Up", "SortCityUp", new AjaxOptions
    {
        UpdateTargetId = "Search",
        InsertionMode = InsertionMode.ReplaceWith
    })
+        |
+        
+            @Ajax.ActionLink("City Down", "SortCityDown", new AjaxOptions
+       {
+           UpdateTargetId = "Search",
+           InsertionMode = InsertionMode.ReplaceWith
+       })
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayName("Phone Number")
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayName("Details")
+        </div>
     </div>
-    <div class="col-md-3">
-        @Html.DisplayName("Phone Number")
-    </div>
-    <div class="col-md-3">
-        @Html.DisplayName("Details")
-    </div>
-</div>
